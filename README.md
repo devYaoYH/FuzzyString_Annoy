@@ -2,7 +2,7 @@
 
 This is an experimental project to implement some form of Fuzzy String matching using Spotify's Annoy library by embedding strings into a high-dimensional space.
 
-[**Alternative: SymSpell**](Approx_SymSPell.ipynb): Much easier and faster to use the SymSpell package for this functionality and then layer on some fuzzy percentage score on the shortlist of suggestions.
+[**Alternative: SymSpell**](Approx_SymSpell.ipynb): Much easier and faster to use the SymSpell package for this functionality and then layer on some fuzzy percentage score on the shortlist of suggestions.
 
 ## Goal
 
