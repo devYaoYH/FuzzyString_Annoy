@@ -33,3 +33,4 @@ Open-sourced Singapore NEA 'Licensed Eating Establishments' dataset from: https:
 - Focus on the problem of **vector embedding** by exploring training a new model using the existing `chars2vec` architecture (described in the blog post linked).
 - Since our search scales cheaply (single query through Annoy tree against size of items in the tree), we can index substrings in addition to the full strings in our corpus?
 - An orthogonal exploration vector would be to look into the literature on Protein DNA matching.
+- If we have a set of correct features, and wish to check for duplicates or close items, this is then this approach will directly apply since we have a good interpretation of what our feature 'vector' looks like. (Each elements is a 'dimension').
