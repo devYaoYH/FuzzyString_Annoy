@@ -19,7 +19,9 @@ Open-sourced Singapore NEA 'Licensed Eating Establishments' dataset from: https:
 1. Using Annoy index-tree approach to the k-NN problem once we **already have good vector embeddings** is an at least ~300x speedup over a naive O(N) cycle through the list of vectors.
 2. This however, begs the question of what is a 'good vector embedding' for this approach to work.
 3. Control test with Levenshtein distance did not fare too well due to query string having different length from search corpus.
-4. Point (3) is somewhat mitigated when we control for this by cycling (wrapping around) strings to fit exactly `NAME_MAXLEN` size. (so 'abc' is repeated to 'abcabcabc...' until we reach the desired string length).
+4. Point (3) can be mitigated when we control for this by cycling (wrapping around) strings to fit exactly `NAME_MAXLEN` size. (so 'abc' is repeated to 'abcabcabc...' until we reach the desired string length).
+    - However, the time taken for Levenshtein algorithm to run scales with length of string, and we observe a O(NL^2) time complexity scaling (compare 1s for dot-product O(N) scan v.s. 23s for this control test).
+    - Could be an unfair comparison because `scipy.distance.cosine` is highly optimized (precompiled c code).
 5. Experimented with naive approaches to the embedding by:
     - Transforming string into sequence of 3 n-grams, 2,4 skip-grams and summing the 'value' of each character ('a' is 0, 'b' is 1 etc...).
     - Using the [`chars2vec`](https://hackernoon.com/chars2vec-character-based-language-model-for-handling-real-world-texts-with-spelling-errors-and-a3e4053a147d) library which has pre-trained models for embedding english words into 50,100,150...-dimensional space
